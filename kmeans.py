@@ -39,6 +39,12 @@ pred = clf.predict(vectors_test)
 metrics.f1_score(test.target, pred, average='weighted')
 
 
+'''#Filtering text
+newsgroups_test = fetch_20newsgroups(subset='test',remove=('headers', 'footers', 'quotes'),categories=categories)
+vectors_test = vectorizer.transform(newsgroups_test.data)
+pred = clf.predict(vectors_test)
+metrics.f1_score(pred, newsgroups_test.target, average='weighted')'''
+
 def show_top10(classifier, vectorizer, categories):
     feature_names = np.asarray(vectorizer.get_feature_names())
     for i, category in enumerate(categories):
