@@ -39,6 +39,18 @@ pred = clf.predict(vectors_test)
 metrics.f1_score(test.target, pred, average='weighted')
 
 
+#clustering of the dataset
+true_k=12
+km = KMeans(n_clusters=20, init='k-means++', max_iter=100, n_init=1)
+km.fit(X)
+rder_centroids = km.cluster_centers_.argsort()[:, ::-1]
+terms = vectorizer.get_feature_names()
+for i in range(true_k):
+    print("cluster %d:" % i)
+    for ind in order_centroids[i,:20]:
+        print('%s' % terms[ind])
+    print()
+
 '''#Filtering text
 newsgroups_test = fetch_20newsgroups(subset='test',remove=('headers', 'footers', 'quotes'),categories=categories)
 vectors_test = vectorizer.transform(newsgroups_test.data)
