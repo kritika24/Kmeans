@@ -1,4 +1,5 @@
 # Reference: http://scikit-learn.org/0.16/datasets/index.html
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -43,7 +44,7 @@ metrics.f1_score(test.target, pred, average='weighted')
 true_k=12
 km = KMeans(n_clusters=20, init='k-means++', max_iter=100, n_init=1)
 km.fit(X)
-rder_centroids = km.cluster_centers_.argsort()[:, ::-1]
+order_centroids = km.cluster_centers_.argsort()[:, ::-1]
 terms = vectorizer.get_feature_names()
 for i in range(true_k):
     print("cluster %d:" % i)
@@ -51,11 +52,13 @@ for i in range(true_k):
         print('%s' % terms[ind])
     print()
 
+
 '''#Filtering text
 newsgroups_test = fetch_20newsgroups(subset='test',remove=('headers', 'footers', 'quotes'),categories=categories)
 vectors_test = vectorizer.transform(newsgroups_test.data)
 pred = clf.predict(vectors_test)
 metrics.f1_score(pred, newsgroups_test.target, average='weighted')'''
+
 
 def show_top10(classifier, vectorizer, categories):
     feature_names = np.asarray(vectorizer.get_feature_names())
