@@ -39,3 +39,12 @@ pred = clf.predict(vectors_test)
 metrics.f1_score(test.target, pred, average='weighted')
 
 
+def show_top10(classifier, vectorizer, categories):
+    feature_names = np.asarray(vectorizer.get_feature_names())
+    for i, category in enumerate(categories):
+        top10 = np.argsort(classifier.coef_[i])[-10:]
+        print("%s: %s" % (category, " ".join(feature_names[top10])))
+        
+show_top10(clf, vectorizer, train.target_names)
+
+
